@@ -53,18 +53,18 @@ class SportsTeamClassTests < MiniTest::Test
     #ARRANGE
     sports_team_1 = SportsTeam.new('Edinburgh FC', ['Bob','Pele','Tony','Christinith','Margaret'],'Paulo Nutini')
     #ACT
-    sports_team_1.is_on_team('Pele')
+    result = sports_team_1.is_on_team('Pele')
     #ASSERT
-    assert_equal("Yes, Pele plays left back in the changing room.", sports_team_1.is_on_team('Super Kenny'))
+    assert_equal("Yes, Pele plays left back in the changing room.", result)
   end
 
   def test_is_on_team__not_on_team
     #ARRANGE
     sports_team_1 = SportsTeam.new('Edinburgh FC', ['Bob','Pele','Tony','Christinith','Margaret'],'Paulo Nutini')
     #ACT
-    sports_team_1.is_on_team('Super Kenny')
+    result = sports_team_1.is_on_team('Super Kenny')
     #ASSERT
-    assert_equal("No, Super Kenny is now a motivational speaker.", sports_team_1.is_on_team('Super Kenny'))
+    assert_equal("No, Super Kenny is now a motivational speaker.", result)
   end
 
   def test_win_loose_draw__win
