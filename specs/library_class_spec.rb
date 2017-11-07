@@ -37,7 +37,7 @@ class LibraryClassTests < MiniTest::Test
       }
   end
 
-  def test_get_library_detailed
+  def test_get_library
     #ARRANGE
     library_1 = Library.new(@library_hash)
     #ACT
@@ -56,12 +56,11 @@ class LibraryClassTests < MiniTest::Test
   end
 
 
-  def test_query_book_details__found
+  def test_book_details__found
     #ARRANGE
     library_1 = Library.new(@library_hash)
     #ACT
-    result = library_1.book_rental_details('1984')
-    p result
+    result = library_1.book_details('1984')
     #ASSERT
     assert_equal(@library_hash[1], result)
   end
