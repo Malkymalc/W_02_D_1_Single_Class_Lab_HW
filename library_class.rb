@@ -15,16 +15,17 @@ class Library
 
     #Could fancify the output
     def book_details(book_str)
-      have_book = library_summary.includes?(book_str)
+      have_book = library_summary.include?(book_str)
       return "Sorry, this book was not found" unless have_book
+
       book_obj = @library.select { |book|
-      book[:title] == book_str
+      book[:title] == book_str }
       return book_obj
     end
 
     #Could fancify the output
     def book_rental_details(book_str)
-      have_book = library_summary.includes?(book_str)
+      have_book = library_summary.include?(book_str)
       return "Sorry, this book was not found" unless have_book
       return book_details(book_str)[:rental_details]
     end

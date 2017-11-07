@@ -3,7 +3,7 @@ require ('minitest/rg')
 require_relative ('../library_class.rb')
 
 class LibraryClassTests < MiniTest::Test
-  def initialize
+  def setup
     @library_hash = [
       {
         title: "lord_of_the_rings",
@@ -37,7 +37,6 @@ class LibraryClassTests < MiniTest::Test
       }
   end
 
-
   def test_get_library_detailed
     #ARRANGE
     library_1 = Library.new(@library_hash)
@@ -53,7 +52,7 @@ class LibraryClassTests < MiniTest::Test
     #ACT
     result = library_1.library_summary
     #ASSERT
-    assert_equal(["lord_of_the_rings','1984','zen_and_the_art_of_motorcyle_maintainance"], result)
+    assert_equal(["lord_of_the_rings","1984","zen_and_the_art_of_motorcyle_maintainance"], result)
   end
 
 
@@ -62,13 +61,9 @@ class LibraryClassTests < MiniTest::Test
     library_1 = Library.new(@library_hash)
     #ACT
     result = library_1.book_rental_details('1984')
+    p result
     #ASSERT
-    assert_equal({
-      title: "zen_and_the_art_of_motorcyle_maintainance",
-      rental_details: {
-       student_name: "Karen",
-       date: "23/8/16"
-       }, result)
+    assert_equal(@library_hash[1], result)
   end
 
 
@@ -88,10 +83,7 @@ class LibraryClassTests < MiniTest::Test
     #ACT
     result = library_1.book_rental_details('1984')
     #ASSERT
-    assert_equal({
-       student_name: "Dave",
-       date: "24/05/16"
-    }, result)
+    assert_equal({student_name: "Dave", date: "24/05/16"}, result)
   end
 
   def test_query_book_rental_details__not_found
@@ -112,5 +104,4 @@ class LibraryClassTests < MiniTest::Test
     #ASSERT
     assert_equal(4, result)
   end
-
 end
